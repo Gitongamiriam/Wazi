@@ -12,61 +12,79 @@ public function available(){
     return view('pages.availability');
 }
 #craete page
+
 public function create_content(){
+
     return view('pages.createc');
 
 }
 
 #craete page
 public function imgpic(Request $request){
-        $name = $request['imageName'];
-        $description = $request['description'];
-        $image = $request['image'];
-        $urrl = '';
-        if ($image) {
-            $image = $request->image->store('public/imageCont');
-            print($request->image->store('public/imageCont'));
+    $name = $request['imageName'];
+    $description = $request['description'];
+    $image = $request['image'];
+    $urrl = '';
+    if ($image) {
+        $image = $request->image->store('public/imageCont');
+        print($request->image->store('public/imageCont'));
+        $urrl = Storage::url($image);
+     
+    
+
+    // if ($request->hasFile('imageCont')) {
+    //     $request->file('imageCont');
+    //     // return Storage::putFile('public',$request->file('imageCont'));
+    //     $request->image->storeAs('public','imageCont');
+    //     $url = Storage::url('imageCont');
+    //     return "<img src=''".$url."/>";
+
+    }else{
+        return 'No file selected';
+    }
+
+
        
-            $urrl = Storage::url($image);
-
-        }else{
-            print("please select an image");
-        }
-        // dd($request->all());
-
+      
         return view('pages.image');
+
+     
+        
 }
-// public function deleteImageContent($id){
-//     // get the image name
-//     $imageContent = Table_Name::select('image')->where('id',$id)->first();
 
-//     // get path
-//     $image_path = 'imageCont/';
 
-//     // deleting from the folder
-//     if(file_exists($image_path.$imageContent->image)){
-//         unlink($image_path.$imageContent->image);
-//     };
 
-//     // deleting from the db
-//     tableName::where('id',$id)->update(['image'=>'']);
+public function deleteImageContent($id){
+    // get the image name
+    $imageContent = Table_Name::select('image')->where('id',$id)->first();
 
-// }
+    // get path
+    $image_path = 'imageCont/';
+
+    // deleting from the folder
+    if(file_exists($image_path.$imageContent->image)){
+        unlink($image_path.$imageContent->image);
+    };
+
+    // deleting from the db
+    tableName::where('id',$id)->update(['image'=>'']);
+
+}
 #craete page
 public function mytext(Request $request){
  
     $description = $request['description'];
     $text = $request['text'];
     $urrl = '';
-    if ($text) {
-        $text = $request->text->store('public/textCont');
-        print($request->text->store('public/textCont'));
+    // if ($text) {
+    //     $text = $request->text->store('public/textCont');
+    //     print($request->text->store('public/textCont'));
    
-        $urrl = Storage::url($text);
+    //     $urrl = Storage::url($text);
       
-    }else{
-        print("please select a text content");
-        }    
+    // }else{
+    //     print("please select a text content");
+    //     }    
  
  
  
@@ -88,14 +106,6 @@ public function deleteTextContent($id){
     // deleting from the db
     tableName::where('id',$id)->update(['text'=>'']);
 
-}
-public function myvedio(Request $request){
-
-
-    return view('pages.video');
-}
-public function myaudio(Request $request){
-    return view('pages.audio');
 }
 
 # home page

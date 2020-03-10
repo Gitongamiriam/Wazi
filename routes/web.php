@@ -22,13 +22,11 @@ Route::get('/availability', 'PagesController@available');
 Route::get('/createc', 'PagesController@create_content');
 Route::get('/images','PagesController@imgpic');
 Route::get('/text','PagesController@mytext');
-Route::get('/video','PagesController@myvedio');
-Route::get('/audios','PagesController@myaudio');
+
 
 Route::post('/images','PagesController@imgpic');
 Route::post('/text','PagesController@mytext');
-Route::post('/video','PagesController@myvedio');
-Route::post('/audios','PagesController@myaudio');
+
 
 
 
