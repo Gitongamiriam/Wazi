@@ -19,7 +19,7 @@ public function create_content(){
 
 #craete page
 public function imgpic(Request $request){
-    $name = $request['imageName'];
+        $name = $request['imageName'];
         $description = $request['description'];
         $image = $request['image'];
         $urrl = '';
@@ -28,18 +28,30 @@ public function imgpic(Request $request){
             print($request->image->store('public/imageCont'));
        
             $urrl = Storage::url($image);
-          
+
+        }else{
+            print("please select an image");
         }
-     
+        // dd($request->all());
 
-
-
-
-
-
-
-    return view('pages.image');
+        return view('pages.image');
 }
+// public function deleteImageContent($id){
+//     // get the image name
+//     $imageContent = Table_Name::select('image')->where('id',$id)->first();
+
+//     // get path
+//     $image_path = 'imageCont/';
+
+//     // deleting from the folder
+//     if(file_exists($image_path.$imageContent->image)){
+//         unlink($image_path.$imageContent->image);
+//     };
+
+//     // deleting from the db
+//     tableName::where('id',$id)->update(['image'=>'']);
+
+// }
 #craete page
 public function mytext(Request $request){
  
@@ -52,9 +64,30 @@ public function mytext(Request $request){
    
         $urrl = Storage::url($text);
       
-    }
+    }else{
+        print("please select a text content");
+        }    
+ 
+ 
  
     return view('pages.text');
+}
+
+public function deleteTextContent($id){
+    // get the image name
+    $textContent = Table_Name::select('text')->where('id',$id)->first();
+
+    // get path
+    $text_path = 'textCont/';
+
+    // deleting from the folder
+    if(file_exists($text_path.$textContent->text)){
+        unlink($text_path.$textContent->text);
+    };
+
+    // deleting from the db
+    tableName::where('id',$id)->update(['text'=>'']);
+
 }
 public function myvedio(Request $request){
 
@@ -62,9 +95,6 @@ public function myvedio(Request $request){
     return view('pages.video');
 }
 public function myaudio(Request $request){
-
-
-    
     return view('pages.audio');
 }
 
@@ -75,3 +105,6 @@ public function index(){
 }
 
 }
+
+
+
