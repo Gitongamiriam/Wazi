@@ -57,33 +57,14 @@ public function mytext(Request $request){
     return view('pages.text');
 }
 public function myvedio(Request $request){
-        // $name = $request['videoName'];
-        // $description = $request['description'];
-        // $video = $request['video'];
-        // $urrl = '';
-        // if ($video) {
-        //     $video = $request->video->store('public/videoCont');
-        //     print($request->video->store('public/videoCont'));
-       
-        //     $urrl = Storage::url($video);
-          
-        // }
+
 
     return view('pages.video');
 }
 public function myaudio(Request $request){
-    // $name = $request['audioName'];
-    // $description = $request['description'];
-    // $audio = $request['audio'];
-    // $urrl = '';
-    // if ($audio) {
-    //     $video = $request->audio->store('public/imageCont');
-    //     print($request->audio->store('public/imageCont'));
-   
-    //     $urrl = Storage::url($audio);
-      
-    // }
 
+
+    
     return view('pages.audio');
 }
 

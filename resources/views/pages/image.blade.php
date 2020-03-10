@@ -6,7 +6,7 @@
         <!-- Table with panel -->
         <div class="card card-cascade narrower" style="width:100%;">
             <!--Card image-->
-            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center" style="">
+            <div class="view view-cascade gradient-card-header orange-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center" style="">
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                     <i class="fas fa-th-large mt-0"></i>
@@ -140,7 +140,7 @@
                         <h4 class="card-title"><a></a></h4>
                         {{-- <!-- Text --> --}}
                         <div class="card-text">
-                            <form class="text-center" style="color: #757575;" action="images" method="POST" enctype="multipart/form-data">
+                            <form class="text-center" style="color: #0196B4;" action="images" method="POST" enctype="multipart/form-data">
                                 {{-- field1 --}}
                                 {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                                 <div class="md-form">

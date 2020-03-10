@@ -33,7 +33,7 @@
                         <h3 class="card-title pt-2"><strong>Videos Contents</strong></h3>
                         <p>This are Videos contents related to human Mental Health that might be helpful to help to fight
                         the battle towards mental health</p>
-                        <a class="btn btn-info" href="{!! url('/vedio'); !!}">
+                        <a class="btn btn-info" href="{!! url('/video'); !!}">
                             <i class="fas fa-image left"></i> View Contents
                         </a>
                     </div>
