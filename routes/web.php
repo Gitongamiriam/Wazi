@@ -20,12 +20,12 @@ use App\Http\Controllers\pagesController;
 Route::get('/', 'PagesController@index');
 Route::get('/availability', 'PagesController@available');
 Route::get('/createc', 'PagesController@create_content');
-Route::get('/images','PagesController@imgpic');
-Route::get('/text','PagesController@mytext');
+Route::get('/content','PagesController@contentpic');
 
 
-Route::post('/images','PagesController@imgpic');
-Route::post('/text','PagesController@mytext');
+
+// Route::post('/content','PagesController@contentpic');
+
 
 
 

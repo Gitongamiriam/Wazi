@@ -20,101 +20,87 @@ public function create_content(){
 }
 
 #craete page
-public function imgpic(Request $request){
-    $name = $request['imageName'];
-    $description = $request['description'];
-    $image = $request['image'];
-    $urrl = '';
-    if ($image) {
-        $image = $request->image->store('public/imageCont');
-        print($request->image->store('public/imageCont'));
-        $urrl = Storage::url($image);
-     
-    
+public function contentpic(Request $request){
 
-    // if ($request->hasFile('imageCont')) {
-    //     $request->file('imageCont');
-    //     // return Storage::putFile('public',$request->file('imageCont'));
-    //     $request->image->storeAs('public','imageCont');
-    //     $url = Storage::url('imageCont');
-    //     return "<img src=''".$url."/>";
 
-    }else{
-        return 'No file selected';
+        
+
+        return view('pages.content');
     }
 
+public function storeImages(Request $request){
+        // $fileName = '';
+        // this->validate($request, [
+        //     'image' => 'max:2000'
+        // ]);
 
-       
-      
-        return view('pages.image');
+        $image = $request['image'];
+        if ($image) {
+            // get file name with extension
+            $fileNameWithExt = $image->getClientOriginalName();
 
-     
+            // get file name alone
+            $file = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            // get file extension
+            $ext = $image->getClientOriginalExtension();
+            
+            // file name to store
+            $fileName = $file.'_'.time().'.'.$ext;
+            
+            $image = $request->image->storeAs('public/imageCont', $fileName);
+            // $urrl = Storage::url($image);
+            
+        }else{
+            // $fileName = "noimage.png";
+            print("please select an image");
+        }
         
-}
+        // create the new image
+        $imgCont = new Image;
+        $imgCont->title = $request['title'];
+        $imgCont->description = $request['description'];
+        $imgCont->imageName =  $fileName;
+        $imgCont->save();
+
+        // *****to be enabled once running******
+        return redirect('images');
+    }
+
 
 
 
 public function deleteImageContent($id){
-    // get the image name
-    $imageContent = Table_Name::select('image')->where('id',$id)->first();
+        // get the image name
+        $imageContent = Image::select('image')->where('id',$id)->first();
 
-    // get path
-    $image_path = 'imageCont/';
+        // get path
+        $image_path = 'imageCont/';
 
-    // deleting from the folder
-    if(file_exists($image_path.$imageContent->image)){
-        unlink($image_path.$imageContent->image);
-    };
+        // deleting from the folder
+        if(file_exists($image_path.$imageContent->image)){
+            unlink($image_path.$imageContent->image);
+        };
 
-    // deleting from the db
-    tableName::where('id',$id)->update(['image'=>'']);
+        // deleting from the db
+        Image::where('id',$id)->update(['image'=>'']);
 
-}
-#craete page
-public function mytext(Request $request){
- 
-    $description = $request['description'];
-    $text = $request['text'];
-    $urrl = '';
-    // if ($text) {
-    //     $text = $request->text->store('public/textCont');
-    //     print($request->text->store('public/textCont'));
-   
-    //     $urrl = Storage::url($text);
-      
-    // }else{
-    //     print("please select a text content");
-    //     }    
- 
- 
- 
-    return view('pages.text');
-}
+    }
 
-public function deleteTextContent($id){
-    // get the image name
-    $textContent = Table_Name::select('text')->where('id',$id)->first();
-
-    // get path
-    $text_path = 'textCont/';
-
-    // deleting from the folder
-    if(file_exists($text_path.$textContent->text)){
-        unlink($text_path.$textContent->text);
-    };
-
-    // deleting from the db
-    tableName::where('id',$id)->update(['text'=>'']);
+    
+    public function index(){
+        $title = "Here Am home";
+        return view('pages.home')->with('title',$title);
+    }    
+    
 
 }
 
-# home page
-public function index(){
-    $title = "Here Am home";
-    return view('pages.home')->with('title',$title);
-}
 
-}
+
+
+
+
 
 
 
