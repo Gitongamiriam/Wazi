@@ -24,7 +24,7 @@ Route::get('/content','PagesController@contentpic');
 
 
 
-// Route::post('/content','PagesController@contentpic');
+Route::post('/content','PagesController@contentpic');
 
 
 
